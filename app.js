@@ -1,14 +1,25 @@
 const THEME_KEY = 'symphony-theme';
 
+function safeGetItem(key, fallback) {
+    try { return localStorage.getItem(key) || fallback; } catch(e) { return fallback; }
+}
+
+function safeSetItem(key, value) {
+    try { localStorage.setItem(key, value); } catch(e) {}
+}
+
 function getTheme() {
-    return localStorage.getItem(THEME_KEY) || 'light';
+    return safeGetItem(THEME_KEY) || 'light';
 }
 
 function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    const btn = document.getElementById('theme-toggle');
-    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
-    localStorage.setItem(THEME_KEY, theme);
+    var btn = document.getElementById('theme-toggle');
+    if (btn) {
+        btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        btn.setAttribute('aria-label', theme === 'dark' ? '切换浅色模式' : '切换深色模式');
+    }
+    safeSetItem(THEME_KEY, theme);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
