@@ -5,8 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Symphony Demo</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+      // 在页面渲染前应用主题，防止闪烁
+      (function() {
+        try {
+          var t = localStorage.getItem('symphony-theme');
+          if (t) document.documentElement.setAttribute('data-theme', t);
+        } catch(e) {}
+      })();
+    </script>
 </head>
 <body>
+    <button id="theme-toggle" aria-label="切换深色模式">🌙</button>
     <h1>Welcome to Symphony Demo</h1>
     <p>This project demonstrates autonomous AI coding workflow.</p>
     <script src="app.js"></script>
