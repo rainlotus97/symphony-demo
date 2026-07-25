@@ -3,22 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Symphony Demo</title>
+    <meta name="theme-color" content="#f6f5f2">
+    <title>倒计时 | Symphony Demo</title>
     <link rel="stylesheet" href="style.css">
     <script>
       // 在页面渲染前应用主题，防止闪烁
       (function() {
         try {
-          var t = localStorage.getItem('symphony-theme');
-          if (t) document.documentElement.setAttribute('data-theme', t);
-        } catch(e) {}
-      })();
+          var theme = localStorage.getItem('symphony-theme');
+          if (theme) document.documentElement.setAttribute('data-theme', theme);
+        } catch (error) {}
+      }());
     </script>
 </head>
 <body>
-    <button id="theme-toggle" aria-label="切换深色模式">🌙</button>
-    <h1>Welcome to Symphony Demo</h1>
-    <p>This project demonstrates autonomous AI coding workflow.</p>
+    <div class="app-shell">
+        <header class="topbar">
+            <a class="brand" href="./" aria-label="回到倒计时首页">
+                <span class="brand-mark" aria-hidden="true">+</span>
+                <span class="brand-name">MINUTE</span>
+            </a>
+            <div class="topbar-tools">
+                <span class="product-label"><span class="status-dot" aria-hidden="true"></span>专注工具</span>
+                <button id="theme-toggle" class="icon-button" type="button" aria-label="切换深色模式" title="切换深色模式">
+                    <span id="theme-icon" aria-hidden="true">◐</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="timer-layout">
+            <section class="timer-panel" aria-labelledby="timer-heading">
+                <div class="section-kicker">COUNTDOWN / 01</div>
+                <h1 id="timer-heading">给时间一个终点。</h1>
+                <p class="intro-copy">专注当下，剩下的交给倒计时。</p>
+
+                <div id="countdown-display" class="countdown-display" role="timer" aria-live="polite" aria-atomic="true" aria-label="剩余时间 00 小时 00 分 00 秒">
+                    <div class="time-unit">
+                        <span id="hours-display" class="time-value">00</span>
+                        <span class="time-label">小时</span>
+                    </div>
+                    <span class="time-separator" aria-hidden="true">:</span>
+                    <div class="time-unit">
+                        <span id="minutes-display" class="time-value">00</span>
+                        <span class="time-label">分钟</span>
+                    </div>
+                    <span class="time-separator" aria-hidden="true">:</span>
+                    <div class="time-unit">
+                        <span id="seconds-display" class="time-value">00</span>
+                        <span class="time-label">秒</span>
+                    </div>
+                </div>
+
+                <div class="progress-area" aria-hidden="true">
+                    <div class="progress-track"><span id="progress-bar" class="progress-bar"></span></div>
+                    <div class="progress-meta">
+                        <span id="timer-state">准备开始</span>
+                        <span id="timer-end">尚未设置</span>
+                    </div>
+                </div>
+
+                <div class="primary-controls">
+                    <button id="start-button" class="button button-primary" type="button">
+                        <span id="start-icon" class="button-icon" aria-hidden="true">▶</span>
+                        <span id="start-label">开始计时</span>
+                    </button>
+                    <button id="reset-button" class="button button-quiet" type="button">
+                        <span class="button-icon" aria-hidden="true">↺</span>
+                        <span>重置</span>
+                    </button>
+                </div>
+
+                <div class="duration-editor">
+                    <div class="editor-heading">
+                        <h2>设置时长</h2>
+                        <span class="editor-caption">HH : MM : SS</span>
+                    </div>
+                    <form id="duration-form" class="duration-form">
+                        <label class="duration-field">
+                            <span class="field-label">时</span>
+                            <input id="hours-input" type="number" inputmode="numeric" min="0" max="99" value="0" aria-label="小时">
+                        </label>
+                        <span class="input-separator" aria-hidden="true">:</span>
+                        <label class="duration-field">
+                            <span class="field-label">分</span>
+                            <input id="minutes-input" type="number" inputmode="numeric" min="0" max="59" value="25" aria-label="分钟">
+                        </label>
+                        <span class="input-separator" aria-hidden="true">:</span>
+                        <label class="duration-field">
+                            <span class="field-label">秒</span>
+                            <input id="seconds-input" type="number" inputmode="numeric" min="0" max="59" value="0" aria-label="秒">
+                        </label>
+                        <button class="button button-apply" type="submit">应用时间</button>
+                    </form>
+                    <p id="form-feedback" class="form-feedback" role="status">可设置 0 至 99 小时。</p>
+                </div>
+            </section>
+
+            <aside class="side-panel" aria-label="倒计时信息">
+                <section class="quick-set-section" aria-labelledby="quick-set-heading">
+                    <div class="side-heading-row">
+                        <h2 id="quick-set-heading">常用时长</h2>
+                        <span class="side-index">02</span>
+                    </div>
+                    <div class="quick-grid">
+                        <button class="quick-button" type="button" data-minutes="5"><strong>05</strong><span>分钟</span></button>
+                        <button class="quick-button" type="button" data-minutes="15"><strong>15</strong><span>分钟</span></button>
+                        <button class="quick-button is-selected" type="button" data-minutes="25"><strong>25</strong><span>分钟</span></button>
+                        <button class="quick-button" type="button" data-minutes="45"><strong>45</strong><span>分钟</span></button>
+                        <button class="quick-button" type="button" data-minutes="60"><strong>60</strong><span>分钟</span></button>
+                        <button class="quick-button" type="button" data-minutes="90"><strong>90</strong><span>分钟</span></button>
+                    </div>
+                </section>
+
+                <section class="status-section" aria-labelledby="status-heading">
+                    <div class="side-heading-row">
+                        <h2 id="status-heading">当前状态</h2>
+                        <span id="status-mark" class="status-mark" aria-hidden="true">•</span>
+                    </div>
+                    <p id="status-copy" class="status-copy">准备好开始一段专注时间。</p>
+                    <dl class="timer-details">
+                        <div>
+                            <dt>总时长</dt>
+                            <dd id="total-duration">25 分钟</dd>
+                        </div>
+                        <div>
+                            <dt>进度</dt>
+                            <dd id="progress-value">0%</dd>
+                        </div>
+                    </dl>
+                </section>
+            </aside>
+        </main>
+
+        <footer class="footer-note">
+            <span>MINUTE / TIME WELL SPENT</span>
+            <span class="footer-line" aria-hidden="true"></span>
+            <span>01</span>
+        </footer>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>
