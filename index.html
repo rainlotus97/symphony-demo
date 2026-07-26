@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +11,21 @@
         try {
           var t = localStorage.getItem('symphony-theme');
           if (t) document.documentElement.setAttribute('data-theme', t);
+          var l = localStorage.getItem('symphony-language');
+          if (l === 'zh-CN' || l === 'en') document.documentElement.setAttribute('lang', l);
         } catch(e) {}
       })();
     </script>
 </head>
 <body>
-    <button id="theme-toggle" aria-label="切换深色模式">🌙</button>
-    <h1>Welcome to Symphony Demo</h1>
-    <p>This project demonstrates autonomous AI coding workflow.</p>
+    <div class="page-controls" role="group" aria-label="Page controls">
+        <button id="language-toggle" type="button" aria-label="Switch to Chinese">中文</button>
+        <button id="theme-toggle" type="button" aria-label="切换深色模式">🌙</button>
+    </div>
+    <main>
+        <h1 data-i18n="heading">Welcome to Symphony Demo</h1>
+        <p data-i18n="description">This project demonstrates autonomous AI coding workflow.</p>
+    </main>
     <script src="app.js"></script>
 </body>
 </html>
