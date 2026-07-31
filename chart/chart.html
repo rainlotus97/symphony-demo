@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图表展示 | Symphony Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .chart-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .chart-header {
+            padding: 30px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .chart-header h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .chart-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        #pie-chart {
+            width: 100%;
+            height: 500px;
+        }
+
+        .chart-footer {
+            padding: 20px 30px;
+            border-top: 1px solid #f0f0f0;
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #764ba2;
+        }
+
+        .info-section {
+            padding: 20px 30px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .info-section h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .info-section p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <div class="chart-header">
+            <h1>图表展示</h1>
+            <p>ECharts 饼状图示例</p>
+        </div>
+
+        <div id="pie-chart"></div>
+
+        <div class="info-section">
+            <h3>数据说明</h3>
+            <p>这是一个使用 ECharts 库生成的饼状图示例。图表展示了不同类别的数据分布，可用于数据可视化和展示。</p>
+        </div>
+
+        <div class="chart-footer">
+            <a href="../index.html" class="back-link">← 返回首页</a>
+        </div>
+    </div>
+
+    <script>
+        const chartDom = document.getElementById('pie-chart');
+        const myChart = echarts.init(chartDom);
+
+        const option = {
+            title: {
+                text: '数据分布',
+                left: 'center',
+                top: 20,
+                textStyle: {
+                    color: '#333',
+                    fontSize: 16,
+                    fontWeight: 'bold'
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{b}: {c} ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                top: 'center',
+                textStyle: {
+                    color: '#666',
+                    fontSize: 12
+                }
+            },
+            series: [
+                {
+                    name: '数据分布',
+                    type: 'pie',
+                    radius: '50%',
+                    center: ['60%', '50%'],
+                    data: [
+                        { value: 335, name: '产品A' },
+                        { value: 310, name: '产品B' },
+                        { value: 234, name: '产品C' },
+                        { value: 135, name: '产品D' },
+                        { value: 148, name: '产品E' }
+                    ],
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    },
+                    label: {
+                        color: '#333',
+                        fontSize: 12
+                    },
+                    itemStyle: {
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }
+                }
+            ],
+            color: ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#00f2fe']
+        };
+
+        myChart.setOption(option);
+
+        window.addEventListener('resize', () => {
+            myChart.resize();
+        });
+    </script>
+</body>
+</html>

@@ -80,6 +80,12 @@ export function initPieChart(target, {
         update(nextData = generateRandomData(categories)) {
             chart.setOption({ series: [{ data: nextData }] });
         },
+        refresh() {
+            this.update();
+        },
+        resize() {
+            chart.resize();
+        },
         dispose() {
             window.removeEventListener('resize', resize);
             chart.dispose();
