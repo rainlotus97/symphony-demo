@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pie Chart Module</title>
+    <link rel="stylesheet" href="chart.css">
+</head>
+<body>
+    <main class="chart-module" aria-labelledby="chart-title">
+        <div class="chart-module__header">
+            <h1 class="chart-module__title" id="chart-title">Budget allocation</h1>
+            <button class="chart-module__refresh" id="refresh-chart" type="button">
+                Refresh data
+            </button>
+        </div>
+        <div class="chart-module__canvas" id="pie-chart" role="img" aria-label="Budget allocation pie chart"></div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <script type="module">
+        import { generateRandomData, initPieChart } from './chart.js';
+
+        const chartModule = initPieChart('#pie-chart');
+        document.querySelector('#refresh-chart').addEventListener('click', () => {
+            chartModule.update(generateRandomData());
+        });
+    </script>
+</body>
+</html>

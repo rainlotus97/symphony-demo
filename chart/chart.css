@@ -1,55 +1,64 @@
-* {
+.chart-module {
+    width: min(100%, 760px);
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border: 1px solid #dbe3ef;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgb(15 23 42 / 8%);
+}
+
+.chart-module__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.chart-module__title {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    color: #172033;
+    font-size: 1.25rem;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px;
+.chart-module__refresh {
+    min-height: 40px;
+    padding: 0.5rem 0.85rem;
+    border: 1px solid #2563eb;
+    border-radius: 6px;
+    background: #2563eb;
+    color: #ffffff;
+    cursor: pointer;
+    font: inherit;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+.chart-module__refresh:hover {
+    background: #1d4ed8;
 }
 
-header {
-    text-align: center;
-    color: white;
-    margin-bottom: 40px;
+.chart-module__refresh:focus-visible {
+    outline: 3px solid rgb(37 99 235 / 35%);
+    outline-offset: 2px;
 }
 
-header h1 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-main {
-    background: white;
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.chart-container {
+.chart-module__canvas {
     width: 100%;
-    height: 500px;
+    height: 420px;
 }
 
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 1.8rem;
+@media (max-width: 520px) {
+    .chart-module {
+        margin: 1rem auto;
+        padding: 1rem;
     }
 
-    main {
-        padding: 20px;
+    .chart-module__header {
+        align-items: flex-start;
+        flex-direction: column;
     }
 
-    .chart-container {
-        height: 400px;
+    .chart-module__canvas {
+        height: 360px;
     }
 }

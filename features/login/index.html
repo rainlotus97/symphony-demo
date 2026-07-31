@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>登录 | Symphony Demo</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body class="login-root">
+    <div id="login-app"></div>
+    <script type="module">
+        import { createLogin } from './login.js';
+        createLogin(document.getElementById('login-app'));
+    </script>
+</body>
+</html>
