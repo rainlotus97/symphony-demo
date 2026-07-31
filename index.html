@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Symphony Demo</title>
+    <meta name="theme-color" content="#f6f5f2">
+    <title>倒计时 | Symphony Demo</title>
     <link rel="stylesheet" href="style.css">
     <script>
       // 在页面渲染前应用主题，防止闪烁
       (function() {
         try {
-          var t = localStorage.getItem('symphony-theme');
-          if (t) document.documentElement.setAttribute('data-theme', t);
-        } catch(e) {}
-      })();
+          var theme = localStorage.getItem('symphony-theme');
+          if (theme) document.documentElement.setAttribute('data-theme', theme);
+          var language = localStorage.getItem('symphony-language');
+          if (language === 'zh-CN' || language === 'en') document.documentElement.setAttribute('lang', language);
+        } catch (error) {}
+      }());
     </script>
 </head>
 <body>
@@ -37,7 +40,6 @@
             </li>
         </ul>
     </nav>
-
     <script src="app.js"></script>
 </body>
 </html>
