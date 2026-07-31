@@ -140,12 +140,40 @@
             </aside>
         </main>
 
+        <section class="demo-modules" aria-labelledby="modules-heading">
+            <div class="modules-heading">
+                <div>
+                    <div class="section-kicker">MODULES / 03</div>
+                    <h2 id="modules-heading">登录与数据概览</h2>
+                </div>
+                <p>用于验证的模拟登录和随机访问来源图表。</p>
+            </div>
+            <div class="module-grid">
+                <section class="module-panel login-demo" aria-labelledby="login-section-title">
+                    <div class="module-panel-heading">
+                        <h3 id="login-section-title">登录页面</h3>
+                        <span class="module-badge">Mock</span>
+                    </div>
+                    <div id="login-app"></div>
+                </section>
+                <section class="module-panel chart-demo" aria-labelledby="chart-section-title">
+                    <div class="module-panel-heading">
+                        <h3 id="chart-section-title">访问来源</h3>
+                        <button id="refresh-pie" class="module-icon-button" type="button" title="刷新图表" aria-label="刷新图表">↻</button>
+                    </div>
+                    <p class="module-description">每次刷新生成一组新的模拟访问数据。</p>
+                    <div id="traffic-pie" class="pie-chart" role="img" aria-label="访问来源饼状图"></div>
+                </section>
+            </div>
+        </section>
+
         <footer class="footer-note">
             <span>MINUTE / TIME WELL SPENT</span>
             <span class="footer-line" aria-hidden="true"></span>
             <span>01</span>
         </footer>
     </div>
-    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <script type="module" src="app.js"></script>
 </body>
 </html>
