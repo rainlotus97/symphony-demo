@@ -1,3 +1,6 @@
+import { initializePieChart } from './features/echarts/pie-chart.js';
+import { createLogin } from './features/login/login.js';
+
 const THEME_KEY = 'symphony-theme';
 
 function safeGetItem(key, fallback) {
@@ -32,4 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         applyTheme(next);
     });
+
+    createLogin(document.getElementById('login-app'));
+    const pie = initializePieChart('traffic-pie', { title: '访问来源' });
+    document.getElementById('refresh-pie').addEventListener('click', () => pie.refresh());
+    window.addEventListener('resize', pie.resize);
 });

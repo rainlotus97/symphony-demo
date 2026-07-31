@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Symphony Demo</title>
+    <title>Symphony Demo | 登录与数据概览</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="features/login/login.css">
     <script>
       // 在页面渲染前应用主题，防止闪烁
       (function() {
@@ -17,8 +18,31 @@
 </head>
 <body>
     <button id="theme-toggle" aria-label="切换深色模式">🌙</button>
-    <h1>Welcome to Symphony Demo</h1>
-    <p>This project demonstrates autonomous AI coding workflow.</p>
-    <script src="app.js"></script>
+    <main class="demo-shell">
+        <header class="demo-header">
+            <p class="demo-eyebrow">SYMPHONY DEMO</p>
+            <h1>模块集成演示</h1>
+            <p>一个可用的模拟登录页面，以及一份实时生成的访问来源概览。</p>
+        </header>
+        <div class="demo-grid">
+            <section class="demo-section login-demo" aria-labelledby="login-section-title">
+                <div class="section-heading">
+                    <div><p class="section-kicker">AUTHENTICATION</p><h2 id="login-section-title">登录页面</h2></div>
+                    <span class="status-dot">Mock</span>
+                </div>
+                <div id="login-app"></div>
+            </section>
+            <section class="demo-section chart-demo" aria-labelledby="chart-section-title">
+                <div class="section-heading">
+                    <div><p class="section-kicker">ANALYTICS</p><h2 id="chart-section-title">访问来源</h2></div>
+                    <button id="refresh-pie" class="icon-action" type="button" title="刷新图表" aria-label="刷新图表">↻</button>
+                </div>
+                <p class="section-description">每次刷新生成一组新的模拟访问数据。</p>
+                <div id="traffic-pie" class="pie-chart" role="img" aria-label="访问来源饼状图"></div>
+            </section>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <script type="module" src="app.js"></script>
 </body>
 </html>

@@ -1,25 +1,48 @@
 :root {
-    --bg: #f5f5f5;
+    --bg: #eef2f6;
     --text: #333;
     --heading: #2563eb;
+    --surface: #ffffff;
+    --border: #dbe1e8;
+    --muted: #687386;
 }
 
 [data-theme="dark"] {
-    --bg: #1a1a2e;
+    --bg: #18212f;
     --text: #e0e0e0;
     --heading: #7aa2f7;
+    --surface: #222d3d;
+    --border: #3a4759;
+    --muted: #aeb9c8;
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    max-width: 800px;
+    max-width: 1180px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 4rem 2rem;
     background: var(--bg);
     color: var(--text);
 }
 
-h1 { color: var(--heading); }
+.demo-header { max-width: 700px; margin-bottom: 2rem; }
+.demo-eyebrow, .section-kicker { margin: 0 0 .6rem; color: var(--heading); font-size: .72rem; font-weight: 800; letter-spacing: .12em; }
+.demo-header h1 { margin: 0; color: var(--heading); font-size: clamp(2rem, 5vw, 3.2rem); }
+.demo-header > p:last-child { margin: .8rem 0 0; color: var(--muted); }
+.demo-grid { display: grid; grid-template-columns: minmax(320px, .9fr) minmax(380px, 1.1fr); gap: 1.5rem; align-items: start; }
+.demo-section { min-width: 0; border: 1px solid var(--border); background: var(--surface); }
+.section-heading { display: flex; align-items: start; justify-content: space-between; gap: 1rem; padding: 1.35rem 1.5rem 0; }
+.section-heading h2 { margin: 0; font-size: 1.35rem; }
+.section-description { margin: .75rem 1.5rem 0; color: var(--muted); font-size: .85rem; }
+.status-dot { padding: .25rem .55rem; border: 1px solid var(--border); color: var(--muted); font-size: .7rem; text-transform: uppercase; }
+.icon-action { width: 36px; height: 36px; border: 1px solid var(--border); background: transparent; color: var(--text); cursor: pointer; font-size: 1.35rem; line-height: 1; }
+.icon-action:hover { border-color: var(--heading); color: var(--heading); }
+.pie-chart { width: 100%; height: 420px; margin-top: .5rem; }
+.login-demo .login-shell { min-height: auto; padding: 2rem 1.5rem 1.5rem; }
+.login-demo .login-panel { width: min(100%, 430px); padding: 0; border: 0; box-shadow: none; background: transparent; }
+[data-theme="dark"] .login-root { background: transparent; color: var(--text); }
+[data-theme="dark"] .login-panel h1, [data-theme="dark"] .form-field label, [data-theme="dark"] .field-label-row { color: var(--text); }
+[data-theme="dark"] .form-field input[type="email"], [data-theme="dark"] .form-field input[type="password"], [data-theme="dark"] .form-field input[type="text"] { border-color: var(--border); background: #1a2433; color: var(--text); }
 
 #theme-toggle {
     position: fixed;
@@ -39,4 +62,17 @@ h1 { color: var(--heading); }
     padding: 0;
     line-height: 1;
     transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+@media (max-width: 800px) {
+    body { padding: 3rem 1rem; }
+    .demo-grid { grid-template-columns: 1fr; }
+    .pie-chart { height: 360px; }
+}
+
+@media (max-width: 520px) {
+    body { padding: 3rem .75rem 1.5rem; }
+    .section-heading { padding-left: 1rem; padding-right: 1rem; }
+    .section-description { margin-left: 1rem; margin-right: 1rem; }
+    .login-demo .login-shell { padding-left: 1rem; padding-right: 1rem; }
 }
